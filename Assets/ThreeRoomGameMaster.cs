@@ -45,10 +45,10 @@ public class ThreeRoomGameMaster : MonoBehaviour
         GetPlayerCurrentRoom();
         SetRoomColors();
 
-        Debug.Log("Current room: " + current_room_);
-        Debug.Log("prev room: " + prev_room_);
+        //Debug.Log("Current room: " + current_room_);
+        //Debug.Log("prev room: " + prev_room_);
         Debug.Log("Color index: " + color_index_);
-        Debug.Log(changed_room_);
+        //Debug.Log(changed_room_);
     }
 
     private void GetPlayerCurrentRoom()
@@ -114,21 +114,19 @@ public class ThreeRoomGameMaster : MonoBehaviour
     private void SetRoomColors()
     {
         
-        if (changed_room_ && (current_room_ > prev_room_ || (current_room_ == 0 && prev_room_ == 3)))
+        if (changed_room_ && ((current_room_ > prev_room_) || (current_room_ == 0 && prev_room_ == 3)))
         {
-            color_index_ = IncrementIndex();
+            IncrementIndex();
         }
-        if (changed_room_ && (current_room_ < prev_room_ || (current_room_ == 3 && prev_room_ == 0)))
+        else if (changed_room_ && ((current_room_ < prev_room_) || (current_room_ == 3 && prev_room_ == 0)))
         {
-            color_index_ = DecrementIndex();
+            DecrementIndex();
         }
 
         switch(current_room_)
         {
             case 0:
                 {
-                    //room_1_.ChangeRoomColor(color_list_[IncrementIndex()]);
-                    //room_3_.ChangeRoomColor(color_list_[DecrementIndex()]);
                     room_2_.ChangeRoomColor(color_list_[color_index_]);
                     break;
                 }
@@ -143,16 +141,12 @@ public class ThreeRoomGameMaster : MonoBehaviour
 
             case 2:
                 {
-                    //room_1_.ChangeRoomColor(color_list_[DecrementIndex()]);
-                    //room_3_.ChangeRoomColor(color_list_[IncrementIndex()]);
                     room_0_.ChangeRoomColor(color_list_[color_index_]);
                     break;
                 }
 
             case 3:
                 {
-                    //room_0_.ChangeRoomColor(color_list_[IncrementIndex()]);
-                    //room_2_.ChangeRoomColor(color_list_[DecrementIndex()]);
                     room_1_.ChangeRoomColor(color_list_[color_index_]);
                     break;
                 }
@@ -160,28 +154,18 @@ public class ThreeRoomGameMaster : MonoBehaviour
         }
     }
 
-    private int IncrementIndex()
+    private void IncrementIndex()
     {
-        if (color_index_ >= color_list_.Count - 1)
-        {
-            return 0;
-        }
-        else
-        {
-            return color_index_ + 1;
-        }
-        
+        color_index_++;
+        color_index_ %= color_list_.Count;
     }
 
-    private int DecrementIndex()
+    private void DecrementIndex()
     {
-        if (color_index_ <= 0)
+        color_index_--;
+        if (color_index_ < 0)
         {
-            return color_list_.Count - 1;
-        }
-        else
-        {
-            return color_index_ - 1;
+            color_index_ = color_list_.Count - 1;
         }
     }
 }
