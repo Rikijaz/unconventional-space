@@ -21,6 +21,10 @@ public class Player : MonoBehaviour {
     private CharacterController char_controller_;
     private bool is_jumping_ = false;
 
+    public List<GameObject> objects_triggering_;
+    private string trigger_name_ = "NONE";
+    private bool trigger_ = false;
+
 	// Use this for initialization
 	void Start () {
         char_controller_ = GetComponent<CharacterController>();
@@ -40,6 +44,27 @@ public class Player : MonoBehaviour {
         }
         
 	}
+
+    public bool IsTriggering(GameObject trigger_object)
+    {
+        bool is_trigger = false;
+        if (objects_triggering_.Contains(trigger_object))
+        {
+            is_trigger = true;
+        }
+
+        return is_trigger;
+    }
+
+    public void SetTrigger(string trigger_name)
+    {
+        trigger_name_ = trigger_name;
+    }
+
+    public bool GetTrigger()
+    {
+        return trigger_;
+    }
 
     private void ParseInput()
     {
@@ -67,7 +92,6 @@ public class Player : MonoBehaviour {
 
     private void ExecuteInput()
     {
-        Debug.Log("Vel: " + vel_);
         vel_ = transform.TransformDirection(vel_);
         char_controller_.Move(vel_ * Time.deltaTime);
     }
@@ -107,4 +131,32 @@ public class Player : MonoBehaviour {
         // Move player
         char_controller_.Move(vel_ * Time.deltaTime);
     }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (!objects_triggering_.Contains(collision.gameObject))
+        {
+            objects_triggering_.Add(collision.gameObject);
+        }
+            
+        if (collision.gameObject.name == trigger_name_)
+        {
+            trigger_ = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+        if (objects_triggering_.Contains(collision.gameObject))
+        {
+            objects_triggering_.Remove(collision.gameObject);
+        }
+
+        if (collision.gameObject.name == trigger_name_)
+        {
+            trigger_ = false;
+        }
+    }
+
+
 }
