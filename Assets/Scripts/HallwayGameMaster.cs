@@ -16,21 +16,16 @@ public class Level : MonoBehaviour {
     // Use this for initialization
     void Start () {
         prev_player_pos_z_ = player_.transform.position.z;
-        player_.SetTrigger("Level");
     }
 	
 	// Update is called once per frame
 	void Update () {
-        CheckIfPlayerIsInHallWay();
         CheckIfPlayerIsLookingAtTheSpheres();
         AdjustPlayerPos();
 	}
 
 
-    private void CheckIfPlayerIsInHallWay()
-    {
-        in_hallway_ = player_.GetTrigger();
-    }
+
 
     private void CheckIfPlayerIsLookingAtTheSpheres()
     {

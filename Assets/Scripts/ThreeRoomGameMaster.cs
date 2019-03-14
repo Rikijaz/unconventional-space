@@ -45,9 +45,9 @@ public class ThreeRoomGameMaster : MonoBehaviour
         GetPlayerCurrentRoom();
         SetRoomColors();
 
-        //Debug.Log("Current room: " + current_room_);
-        //Debug.Log("prev room: " + prev_room_);
-        Debug.Log("Color index: " + color_index_);
+        Debug.Log("Current room: " + current_room_);
+        Debug.Log("prev room: " + prev_room_);
+        //Debug.Log("Color index: " + color_index_);
         //Debug.Log(changed_room_);
     }
 

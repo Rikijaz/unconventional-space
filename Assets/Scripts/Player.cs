@@ -22,8 +22,6 @@ public class Player : MonoBehaviour {
     private bool is_jumping_ = false;
 
     public List<GameObject> objects_triggering_;
-    private string trigger_name_ = "NONE";
-    private bool trigger_ = false;
 
 	// Use this for initialization
 	void Start () {
@@ -54,16 +52,6 @@ public class Player : MonoBehaviour {
         }
 
         return is_trigger;
-    }
-
-    public void SetTrigger(string trigger_name)
-    {
-        trigger_name_ = trigger_name;
-    }
-
-    public bool GetTrigger()
-    {
-        return trigger_;
     }
 
     private void ParseInput()
@@ -138,11 +126,6 @@ public class Player : MonoBehaviour {
         {
             objects_triggering_.Add(collision.gameObject);
         }
-            
-        if (collision.gameObject.name == trigger_name_)
-        {
-            trigger_ = true;
-        }
     }
 
     private void OnTriggerExit(Collider collision)
@@ -151,12 +134,5 @@ public class Player : MonoBehaviour {
         {
             objects_triggering_.Remove(collision.gameObject);
         }
-
-        if (collision.gameObject.name == trigger_name_)
-        {
-            trigger_ = false;
-        }
     }
-
-
 }
