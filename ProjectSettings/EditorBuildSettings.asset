@@ -9,5 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuLevel.unity
     guid: f63a2bf50c1c11c4f874cb3f04f3fd62
   - enabled: 1
-    path: Assets/Scenes/ThreeRoomLevel.unity
+    path: Assets/Scenes/InfiniteRoomLevel.unity
     guid: b87462e2e4ef75445821a821ff140736
+  - enabled: 1
+    path: Assets/Scenes/FreeFall.unity
+    guid: 372a9c6a45567044195a01d734bb68fe
