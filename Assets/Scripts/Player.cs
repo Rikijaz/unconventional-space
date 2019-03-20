@@ -107,7 +107,7 @@ public class Player : MonoBehaviour {
         {
             if (Input.GetButton("Jump"))
             {
-                y_vel = move_speed_;
+                y_vel = jump_speed_;
             }
         }
         // Apply gravity
@@ -124,6 +124,7 @@ public class Player : MonoBehaviour {
     {
         if (!objects_triggering_.Contains(collision.gameObject))
         {
+            Debug.Log(collision.gameObject.name);
             objects_triggering_.Add(collision.gameObject);
         }
     }

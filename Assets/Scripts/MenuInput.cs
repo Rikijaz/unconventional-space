@@ -14,14 +14,13 @@ public class MenuInput : MonoBehaviour {
         OVRInput.Update(); // Call before checking the input
 
         // Start game
-        if (OVRInput.Get(OVRInput.Button.One))
+        if (OVRInput.Get(OVRInput.Button.One) || Input.GetKey(KeyCode.A)) 
         {
-            Debug.Log("wasdad");
             SceneManager.LoadScene(first_level_scene_);
         }
 
         // End 
-        if (OVRInput.Get(OVRInput.Button.Two))
+        if (OVRInput.Get(OVRInput.Button.Two) || Input.GetKey(KeyCode.B))
         {
             #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
