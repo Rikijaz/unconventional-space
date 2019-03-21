@@ -18,5 +18,8 @@ EditorBuildSettings:
     path: Assets/Scenes/FreeFall.unity
     guid: 372a9c6a45567044195a01d734bb68fe
   - enabled: 1
+    path: Assets/Scenes/HallwayLevel.unity
+    guid: 6836eb25b2e3de242be31f0c5258537e
+  - enabled: 1
     path: Assets/Scenes/PlanetLevel.unity
     guid: dae3a3cd69d50204d95a23786f51ec80

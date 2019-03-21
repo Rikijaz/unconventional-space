@@ -365,6 +365,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114125219471589728, guid: b966b6a69a109cf45b1c83369dfd0320,
+        type: 2}
+      propertyPath: usePositionTracking
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b966b6a69a109cf45b1c83369dfd0320, type: 2}
   m_IsPrefabParent: 0

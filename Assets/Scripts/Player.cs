@@ -132,7 +132,7 @@ public class Player : MonoBehaviour {
         vel_.y = y_vel;
 
         // Move player
-        char_controller_.Move(vel_);
+        char_controller_.Move(vel_ * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider collision)
