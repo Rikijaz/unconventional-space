@@ -6,13 +6,13 @@ using UnityEngine.VR;
 
 
 public class Player : MonoBehaviour {
-    [SerializeField] private bool kb_m_ = false;
+    private bool kb_m_ = false;
 
     [Header("Player Stats")]
-    [SerializeField] private float move_speed_ = 5f;
-    [SerializeField] private float jump_speed_ = 5f;
-    [SerializeField] private float rotate_speed_ = 2f;
-    [SerializeField] private float gravity_ = 9.8f;
+    private float move_speed_ = 5f;
+    private float jump_speed_ = 40f;
+    private float rotate_speed_ = 2f;
+    private float gravity_ = 9.8f;
 
     private float yaw_ = 0f;
     private float pitch_ = 0f;
@@ -56,7 +56,9 @@ public class Player : MonoBehaviour {
 
     private void ParseInput()
     {
-        Vector2 axis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick); 
+        
+        Vector2 axis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
+        Debug.Log(axis);
         float x_axis = axis.x;
         float z_axis = axis.y;
 
@@ -64,23 +66,27 @@ public class Player : MonoBehaviour {
         float z_vel = move_speed_ * z_axis;
         float y_vel = 0f;
 
-        if (OVRInput.Get(OVRInput.Button.One))
+        vel_ = new Vector3(x_vel, 0f, z_vel);
+        vel_ = transform.TransformDirection(vel_);
+
+        if (OVRInput.GetDown(OVRInput.Button.One))
         {
+            Debug.Log(1);
             if (char_controller_.isGrounded)
             {
+                Debug.Log(2);
                 y_vel = jump_speed_;
             }
         }
 
-        y_vel = y_vel - (gravity_ * Time.deltaTime);
+        y_vel = y_vel - (9.8f);
 
 
-        vel_ = new Vector3(x_vel, -gravity_, z_vel);
+        vel_.y = y_vel;
     }
 
     private void ExecuteInput()
     {
-        vel_ = transform.TransformDirection(vel_);
         char_controller_.Move(vel_ * Time.deltaTime);
     }
 
@@ -111,7 +117,7 @@ public class Player : MonoBehaviour {
             }
         }
         // Apply gravity
-        y_vel = y_vel - (gravity_);
+        y_vel = y_vel - (gravity_ * Time.deltaTime);
 
         // Apply to vel_ vector
         vel_.y = y_vel;
