@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 
     [Header("Player Stats")]
     private float move_speed_ = 5f;
-    private float jump_speed_ = 40f;
+    private float jump_speed_ = 60f;
     private float rotate_speed_ = 2f;
     private float gravity_ = 9.8f;
 
@@ -31,6 +31,11 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            kb_m_ = !kb_m_;
+        }
+
         if (kb_m_)
         {
             ParseAndExecuteKBMInput();
@@ -69,15 +74,15 @@ public class Player : MonoBehaviour {
         vel_ = new Vector3(x_vel, 0f, z_vel);
         vel_ = transform.TransformDirection(vel_);
 
-        if (OVRInput.GetDown(OVRInput.Button.One))
-        {
-            Debug.Log(1);
-            if (char_controller_.isGrounded)
-            {
-                Debug.Log(2);
-                y_vel = jump_speed_;
-            }
-        }
+        //if (OVRInput.GetDown(OVRInput.Button.One))
+        //{
+        //    Debug.Log(1);
+        //    if (char_controller_.isGrounded)
+        //    {
+        //        Debug.Log(2);
+        //        y_vel = jump_speed_;
+        //    }
+        //}
 
         y_vel = y_vel - (9.8f);
 
@@ -109,21 +114,25 @@ public class Player : MonoBehaviour {
 
         // Calculate Y velocity
         float y_vel = 0f;
-        if (char_controller_.isGrounded)
-        {
-            if (Input.GetButton("Jump"))
-            {
-                y_vel = jump_speed_;
-            }
-        }
+
+        //if (char_controller_.isGrounded)
+        //{
+        //    if (Input.GetButtonDown("Jump"))
+        //    {
+        //        Debug.Log(22);
+        //        y_vel += Mathf.Sqrt(jump_speed_ * gravity_);
+        //        //y_vel =  jump_speed_;
+        //    }
+        //}
+
         // Apply gravity
-        y_vel = y_vel - (gravity_ * Time.deltaTime);
+        y_vel = y_vel - (gravity_);
 
         // Apply to vel_ vector
         vel_.y = y_vel;
 
         // Move player
-        char_controller_.Move(vel_ * Time.deltaTime);
+        char_controller_.Move(vel_);
     }
 
     private void OnTriggerEnter(Collider collision)
