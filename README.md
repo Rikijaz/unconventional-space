@@ -1,3 +1,7 @@
+# CS135 VR Project - Unconventional Space
+
+Developed by @derickx1 and @rikijaz
+
 # Abstract
 
 Our project, Unconventional space, is about manipulation of the user’s perception of space to simulate non euclidean geometry. By forcing the player into unusual circumstances, such as seemingly infinite or warped spaces, the project delivers a unique and interesting experiences. Techniques used to create these abnormal situations included color swapping environments and moving points of reference instead of the player to create a false sense of movement, teleporting to connect otherwise far away locations, and gravitational shifts to alter the player’s freedom of movement.
