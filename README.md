@@ -1,6 +1,6 @@
 # CS135 VR Project - Unconventional Space
 
-Developed by @derickx1 and @rikijaz
+Developed by [@derickx1](https://github.com/derickx1) and [@rikijaz](https://github.com/rikijaz)
 
 # Abstract
 
